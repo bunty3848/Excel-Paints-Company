@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaFacebookF, FaLinkedinIn, FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaFacebookF, FaLinkedinIn, FaInstagram, FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
 import { IoSparkles } from 'react-icons/io5';
 import SEO from '../components/SEO';
 import { companyInfo } from '../data/companyInfo';
@@ -16,21 +16,36 @@ const Contact = () => {
     reset,
   } = useForm();
 
+  // Encodes form data the way Netlify's form-handling endpoint expects
+  const encode = (data) => {
+    return Object.keys(data)
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  };
+
   const onSubmit = async (data) => {
     setIsSubmitting(true);
-    
-    // Simulate form submission (replace with actual EmailJS or API call)
-    setTimeout(() => {
-      console.log('Form Data:', data);
+
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({ 'form-name': 'contact', ...data }),
+      });
+
       setIsSubmitted(true);
-      setIsSubmitting(false);
       reset();
-      
+
       // Reset success message after 5 seconds
       setTimeout(() => {
         setIsSubmitted(false);
       }, 5000);
-    }, 1500);
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Sorry, something went wrong sending your message. Please try calling or emailing us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -130,7 +145,22 @@ const Contact = () => {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="space-y-6"
+                name="contact"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+              >
+                {/* Required hidden field so Netlify links this submission to the form defined in index.html */}
+                <input type="hidden" name="form-name" value="contact" />
+                {/* Honeypot field to catch spam bots - kept hidden from real users */}
+                <p className="hidden">
+                  <label>
+                    Don't fill this out if you're human: <input name="bot-field" />
+                  </label>
+                </p>
+
                 {/* Full Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -214,6 +244,7 @@ const Contact = () => {
                     <option value="wall-putty">Wall Putty</option>
                     <option value="white-cement">Decorative White Cement</option>
                     <option value="cement-paint">Cement Paint</option>
+                    <option value="white-wash">White Wash</option>
                     <option value="all">All Products</option>
                   </select>
                 </div>
@@ -281,24 +312,33 @@ const Contact = () => {
               {/* Social Media */}
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">Connect With Us</h3>
-                <div className="flex space-x-4">
+                <div className="grid grid-cols-3 gap-3">
                   <a
                     href={companyInfo.social.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center space-x-2 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+                    className="flex flex-col items-center justify-center space-y-1 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
                   >
-                    <FaFacebookF />
-                    <span>Facebook</span>
+                    <FaFacebookF className="text-lg" />
+                    <span className="text-xs">Facebook</span>
                   </a>
                   <a
                     href={companyInfo.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center space-x-2 py-3 rounded-xl bg-gradient-to-r from-blue-700 to-blue-800 text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+                    className="flex flex-col items-center justify-center space-y-1 py-3 rounded-xl bg-gradient-to-r from-blue-700 to-blue-800 text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
                   >
-                    <FaLinkedinIn />
-                    <span>LinkedIn</span>
+                    <FaLinkedinIn className="text-lg" />
+                    <span className="text-xs">LinkedIn</span>
+                  </a>
+                  <a
+                    href={companyInfo.social.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center justify-center space-y-1 py-3 rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+                  >
+                    <FaInstagram className="text-lg" />
+                    <span className="text-xs">Instagram</span>
                   </a>
                 </div>
               </div>

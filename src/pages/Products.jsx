@@ -169,6 +169,11 @@ const Products = () => {
                       </div>
                     ))}
                   </div>
+                  {selectedProduct.coverageNote && (
+                    <p className="text-xs text-gray-500 italic mt-4 pt-4 border-t border-gray-200">
+                      {selectedProduct.coverageNote}
+                    </p>
+                  )}
                 </div>
               </div>
 

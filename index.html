@@ -2,17 +2,72 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#DC2626" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Excel Paints Company - Leading manufacturer of wall putty, decorative white cement, and cement paints in Patna, Bihar. ISO 9001:2015 certified." />
-    <meta name="keywords" content="excel paints, wall putty, white cement, cement paint, patna, bihar, iso certified" />
+    <meta name="description" content="Excel Paints Company - Leading manufacturer of wall putty, decorative white cement, cement paints, and white wash in Patna, Bihar. ISO 9001:2015 certified." />
+    <meta name="keywords" content="excel paints, wall putty, white cement, cement paint, white wash, patna, bihar, iso certified" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>Excel Paints Company - Quality Wall Putty & Cement Products | Patna, Bihar</title>
+
+    <!-- Structured Data: helps Google show our logo/brand correctly in search results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Excel Paints Company",
+      "url": "https://www.excelpaintscompany.in",
+      "logo": "https://www.excelpaintscompany.in/images/Logo.png",
+      "image": "https://www.excelpaintscompany.in/images/Logo.png",
+      "description": "Leading manufacturer of wall putty, decorative white cement, cement paints, and white wash in Patna, Bihar. ISO 9001:2015 certified.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Abdullahchak",
+        "addressLocality": "Patna",
+        "postalCode": "800007",
+        "addressRegion": "Bihar",
+        "addressCountry": "IN"
+      },
+      "telephone": "+919798081022",
+      "email": "excelpaintscompany@gmail.com",
+      "sameAs": [
+        "https://www.facebook.com/share/175x5uXA8g/",
+        "https://www.linkedin.com/company/excel-paints-company/",
+        "https://www.instagram.com/excel_paints_patna"
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- 
+      Hidden static form so Netlify's build bot can detect and register this form.
+      This is required for Netlify Forms to work with a React/Vite SPA, since 
+      Netlify scans the built HTML (not the JS-rendered React form) at deploy time.
+      Do not remove - the real, visible form in Contact.jsx submits to this same 
+      form name via fetch().
+    -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="product" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+

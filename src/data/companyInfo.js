@@ -15,6 +15,7 @@ export const companyInfo = {
   social: {
     facebook: 'https://www.facebook.com/share/175x5uXA8g/',
     linkedin: 'https://www.linkedin.com/company/excel-paints-company/',
+    instagram: 'https://www.instagram.com/excel_paints_patna?igsh=MTNwZXBtaXg0M294OA==',
   },
 
   certifications: [

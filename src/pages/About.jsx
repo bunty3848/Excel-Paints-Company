@@ -2,6 +2,7 @@ import { FaAward, FaHandshake, FaLightbulb, FaLeaf, FaIndustry, FaCheckCircle } 
 import { IoSparkles } from 'react-icons/io5';
 import SEO from '../components/SEO';
 import { companyInfo } from '../data/companyInfo';
+import { products } from '../data/products';
 
 const About = () => {
   const iconMap = {
@@ -72,7 +73,7 @@ const About = () => {
                   <div className="text-lg">Years of Excellence</div>
                 </div>
                 <div className="bg-gradient-to-br from-accent-green to-green-600 rounded-2xl p-8 text-white shadow-xl transform hover:scale-105 transition-all duration-300">
-                  <div className="text-5xl font-bold mb-2">3</div>
+                  <div className="text-5xl font-bold mb-2">{products.length}</div>
                   <div className="text-lg">Premium Products</div>
                 </div>
                 <div className="bg-gradient-to-br from-accent-red to-red-600 rounded-2xl p-8 text-white shadow-xl transform hover:scale-105 transition-all duration-300">

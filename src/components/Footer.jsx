@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaFacebookF, FaLinkedinIn, FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaHeart } from 'react-icons/fa';
+import { FaFacebookF, FaLinkedinIn, FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaHeart } from 'react-icons/fa';
 import { companyInfo } from '../data/companyInfo';
 
 const Footer = () => {
@@ -52,6 +52,15 @@ const Footer = () => {
                 aria-label="LinkedIn"
               >
                 <FaLinkedinIn />
+              </a>
+              <a
+                href={companyInfo.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
+                aria-label="Instagram"
+              >
+                <FaInstagram />
               </a>
             </div>
           </div>

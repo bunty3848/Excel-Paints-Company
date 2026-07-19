@@ -69,7 +69,7 @@ const Home = () => {
                 <div className="text-sm font-semibold text-gray-200">Years Experience</div>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-xl px-6 py-4 border-l-4 border-green-500 hover:bg-white/20 transition-all">
-                <div className="text-4xl font-black text-green-400">8</div>
+                <div className="text-4xl font-black text-green-400">{products.length}</div>
                 <div className="text-sm font-semibold text-gray-200">Premium Products</div>
               </div>
               <div className="bg-white/10 backdrop-blur-md rounded-2xl shadow-xl px-6 py-4 border-l-4 border-yellow-500 hover:bg-white/20 transition-all">
@@ -175,6 +175,7 @@ const Home = () => {
                 'from-teal-500 to-cyan-500',
                 'from-indigo-500 to-blue-500',
                 'from-orange-500 to-red-500',
+                'from-sky-500 to-indigo-500',
               ];
               const bgColors = [
                 'bg-gradient-to-br from-red-50 to-orange-50',
@@ -185,7 +186,10 @@ const Home = () => {
                 'bg-gradient-to-br from-teal-50 to-cyan-50',
                 'bg-gradient-to-br from-indigo-50 to-blue-50',
                 'bg-gradient-to-br from-orange-50 to-red-50',
+                'bg-gradient-to-br from-sky-50 to-indigo-50',
               ];
+              // Use modulo so styling never breaks even if more products are added later
+              const colorIndex = index % gradients.length;
 
               return (
                 <div
@@ -196,7 +200,7 @@ const Home = () => {
                   {/* Product Card */}
                   <div className="paint-card overflow-hidden">
                     {/* Image Section */}
-                    <div className={`relative h-80 ${bgColors[index]} overflow-hidden`}>
+                    <div className={`relative h-80 ${bgColors[colorIndex]} overflow-hidden`}>
                       <img
                         src={product.image}
                         alt={product.name}
@@ -211,15 +215,15 @@ const Home = () => {
                         <span className="text-xs font-black text-gray-900">ISO CERTIFIED</span>
                       </div>
                       {/* Decorative Circle */}
-                      <div className={`absolute -bottom-10 -right-10 w-40 h-40 bg-gradient-to-br ${gradients[index]} rounded-full opacity-20 blur-2xl`}></div>
+                      <div className={`absolute -bottom-10 -right-10 w-40 h-40 bg-gradient-to-br ${gradients[colorIndex]} rounded-full opacity-20 blur-2xl`}></div>
                     </div>
                     
                     {/* Content Section */}
                     <div className="p-8 bg-white">
-                      <div className={`inline-block px-4 py-1 bg-gradient-to-r ${gradients[index]} text-white text-xs font-bold rounded-full mb-4`}>
+                      <div className={`inline-block px-4 py-1 bg-gradient-to-r ${gradients[colorIndex]} text-white text-xs font-bold rounded-full mb-4`}>
                         {product.shortDesc}
                       </div>
-                      <h3 className="text-3xl font-black mb-3 text-gray-900 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:${gradients[index]} transition-all">
+                      <h3 className="text-3xl font-black mb-3 text-gray-900 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:${gradients[colorIndex]} transition-all">
                         {product.name}
                       </h3>
                       <p className="text-gray-600 mb-6 leading-relaxed text-lg">
@@ -230,7 +234,7 @@ const Home = () => {
                       <div className="space-y-3 mb-6">
                         {product.features.slice(0, 3).map((feature, idx) => (
                           <div key={idx} className="flex items-start space-x-3">
-                            <div className={`w-6 h-6 bg-gradient-to-r ${gradients[index]} rounded-full flex items-center justify-center flex-shrink-0 mt-0.5`}>
+                            <div className={`w-6 h-6 bg-gradient-to-r ${gradients[colorIndex]} rounded-full flex items-center justify-center flex-shrink-0 mt-0.5`}>
                               <FaCheckCircle className="text-white text-xs" />
                             </div>
                             <span className="text-sm text-gray-700 font-medium">{feature}</span>
@@ -241,7 +245,7 @@ const Home = () => {
                       {/* View Details Button */}
                       <Link
                         to="/products"
-                        className={`w-full py-4 rounded-full text-white font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 bg-gradient-to-r ${gradients[index]}`}
+                        className={`w-full py-4 rounded-full text-white font-bold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 bg-gradient-to-r ${gradients[colorIndex]}`}
                       >
                         <span>View Details</span>
                         <FaArrowRight />
